@@ -1,0 +1,7 @@
+Thread 1 start.
+Thread1 completely pushed.
+Thread 2 start.
+Thread2 completely pushed.
+Cleaning up: Thread2 2nd handler.
+Thread1 exited with code 1.
+Thread2 exited with code 4.

@@ -1,0 +1,9 @@
+Main thread: mic check 123123.
+I'm a thread: counting 0.
+I'm a thread: counting 1.
+I'm a thread: counting 2.
+I'm a thread: counting 3.
+I'm the main thread: counting 0.
+I'm the main thread: counting 1.
+I'm the main thread: counting 2.
+I'm the main thread: counting 3.

@@ -1,0 +1,5 @@
+Main thread: starting...
+New thread: I'm a new thread.
+New thread: my tid is 2376599296.
+New thread: my pid is 8841.
+Main process pid is 8841.
