@@ -1,0 +1,3 @@
+I'm the main thread.
+A new thread created.
+pthread exit code returned 233.

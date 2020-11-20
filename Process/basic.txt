@@ -1,0 +1,121 @@
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# ps
+  PID TTY          TIME CMD
+ 5743 pts/1    00:00:01 bash
+ 6798 pts/1    00:00:00 killnsignal
+ 6849 pts/1    00:00:00 killnsignal
+ 6850 pts/1    00:00:00 killnsignal
+ 7081 pts/1    00:00:00 ps
+[1]-  Terminated              ./killnsignal
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# kill 6798
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# ps
+  PID TTY          TIME CMD
+ 5743 pts/1    00:00:01 bash
+ 6849 pts/1    00:00:00 killnsignal
+ 6850 pts/1    00:00:00 killnsignal
+ 7082 pts/1    00:00:00 ps
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# 
+
+
+
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# pstree -h
+init─┬─init───sh───sh───sh───node─┬─node─┬─bash─┬─killnsignal───killnsignal
+     │                            │      │      └─pstree
+     │                            │      ├─cpptools─┬─2*[cpptools-srv───18*[{cpptools-srv}]]
+     │                            │      │          └─30*[{cpptools}]
+     │                            │      ├─node───6*[{node}]
+     │                            │      └─15*[{node}]
+     │                            ├─node───10*[{node}]
+     │                            └─11*[{node}]
+     ├─sshd
+     └─{init}
+
+
+
+
+top - 00:33:39 up  7:15,  0 users,  load average: 0.52, 0.58, 0.59
+Tasks:  17 total,   1 running,  14 sleeping,   2 stopped,   0 zombie
+%Cpu(s):  3.1 us,  3.1 sy,  0.0 ni, 93.6 id,  0.0 wa,  0.2 hi,  0.0 si,  0.0 st
+MiB Mem :  32714.4 total,  14855.2 free,  17635.2 used,    224.0 buff/cache
+MiB Swap:  59369.2 total,  57562.0 free,   1807.1 used.  14948.6 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                              
+    1 root      20   0    8936    312    268 S   0.0   0.0   0:00.14 init                                 
+   72 root      20   0   20208   1152   1040 S   0.0   0.0   0:00.00 sshd                                 
+  230 root      20   0    8944    228    184 S   0.0   0.0   0:00.00 init                                 
+  231 root      20   0   10656    680    640 S   0.0   0.0   0:00.01 sh                                   
+  232 root      20   0   10656    744    708 S   0.0   0.0   0:00.01 sh                                   
+  254 root      20   0   10656    712    676 S   0.0   0.0   0:00.00 sh                                   
+  256 root      20   0  985304  57776  26764 S   0.0   0.2   0:07.41 node                                 
+  505 root      20   0 1140276 116440 104760 S   0.0   0.3   0:40.59 node                                 
+  512 root      20   0  857004  23500  13720 S   0.0   0.1   0:01.21 node                                 
+  535 root      20   0 2265624  42956  37432 S   0.0   0.1   0:39.91 cpptools                             
+ 5743 root      20   0   17008   2456   2364 S   0.0   0.0   0:01.05 bash                                 
+ 5827 root      20   0  562120  22156  13464 S   0.0   0.1   0:00.14 node                                 
+ 6240 root      20   0 5479236  30872  25600 S   0.0   0.1   0:11.35 cpptools-srv                         
+ 6849 root      20   0   10536    540    488 T   0.0   0.0   0:00.00 killnsignal                          
+ 6850 root      20   0   10536    332    236 T   0.0   0.0   0:00.00 killnsignal                          
+ 7060 root      20   0 5479368   8364   4592 S   0.0   0.0   0:00.09 cpptools-srv                         
+ 7086 root      20   0   18904   2172   1520 R   0.0   0.0   0:00.03 top                            
+
+
+
+
+ root@RIDD-DESKTOP:/mnt/g/Courseware/OS# vmstat
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+Error: /proc must be mounted
+  To mount /proc at boot you need an /etc/fstab line like:
+      proc   /proc   proc    defaults
+  In the meantime, run "mount proc /proc -t proc"
+
+
+
+
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# sleep 0.1
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# sleep 10
+
+
+
+
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# jobs
+[2]+  Stopped                 ./killnsignal
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# jobs -l
+[2]+  6849 Stopped                 ./killnsignal
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# jobs -n
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# jobs -p
+6849
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# jobs -r
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# jobs -s
+[2]+  Stopped                 ./killnsignal
+
+
+
+
+root@RIDD-DESKTOP:/mnt/g/Courseware/OS# strace -c ls
+Process  Thread
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  0.00    0.000000           0         9           read
+  0.00    0.000000           0         1           write
+  0.00    0.000000           0        26           close
+  0.00    0.000000           0        25           fstat
+  0.00    0.000000           0        40           mmap
+  0.00    0.000000           0         9           mprotect
+  0.00    0.000000           0         1           munmap
+  0.00    0.000000           0         3           brk
+  0.00    0.000000           0         2           rt_sigaction
+  0.00    0.000000           0         1           rt_sigprocmask
+  0.00    0.000000           0         2           ioctl
+  0.00    0.000000           0         8           pread64
+  0.00    0.000000           0         2         2 access
+  0.00    0.000000           0         1           execve
+  0.00    0.000000           0         2         2 statfs
+  0.00    0.000000           0         2         1 arch_prctl
+  0.00    0.000000           0         1           futex
+  0.00    0.000000           0         2           getdents64
+  0.00    0.000000           0         1           set_tid_address
+  0.00    0.000000           0        24           openat
+  0.00    0.000000           0         1           set_robust_list
+  0.00    0.000000           0         1           prlimit64
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000000                   164         5 total

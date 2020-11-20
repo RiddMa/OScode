@@ -1,0 +1,4 @@
+Child process
+return of fork() = 0, pid of child = 6590
+Parent process: 6589
+return of fork() = 6590, return of wait() = 6590

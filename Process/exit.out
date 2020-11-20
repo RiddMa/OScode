@@ -1,0 +1,5 @@
+pid of parent: 0
+return of fork(): 1
+I am the parent process.
+pid of parent: 6314
+I am the child process.

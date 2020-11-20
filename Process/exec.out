@@ -1,0 +1,10 @@
+PATH=/tmp
+USER=ridd
+STATUS=testing
+executed by execl
+executed by execlp
+executed by execv
+PATH=/tmp
+USER=ridd
+STATUS=testing
+executed by execvp

@@ -1,0 +1,6 @@
+Signal received and processing.
+4
+Child speaking: I am here.
+Parent speaking: Sending signal to child process.
+Signal received and processing.
+Parent speaking: finished.
