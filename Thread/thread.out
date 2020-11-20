@@ -1,0 +1,26 @@
+Thread 0 starting.
+Thread 1 starting.
+Thread 2 starting.
+Thread creation successful.
+Waiting for threads to finish.
+	 Thread 0: job 0 delay = 8.
+	 Thread 2: job 0 delay = 9.
+	 Thread 1: job 0 delay = 10.
+	 Thread 0: job 1 delay = 2.
+	 Thread 1: job 1 delay = 2.
+	 Thread 2: job 1 delay = 4.
+	 Thread 0: job 2 delay = 4.
+	 Thread 0: job 3 delay = 5.
+	 Thread 2: job 2 delay = 9.
+	 Thread 1: job 2 delay = 10.
+	 Thread 1: job 3 delay = 3.
+	 Thread 0: job 4 delay = 7.
+Thread 0 finished.
+Thread 0 successfully joined.
+	 Thread 1: job 4 delay = 5.
+Thread 1 finished.
+Thread 1 successfully joined.
+	 Thread 2: job 3 delay = 9.
+	 Thread 2: job 4 delay = 5.
+Thread 2 finished.
+Thread 2 successfully joined.
