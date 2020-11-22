@@ -1,4 +1,3 @@
-/* triple_thread_mutex.c */
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
@@ -24,6 +23,8 @@ typedef struct orange
     int b[ORANGE_MAX_VALUE];
 } orange;
 
+pthread_mutex_t mutex;
+
 void sort(long int *arr, int arrlen)
 {
     int i, j;
@@ -46,10 +47,14 @@ void *compute_apple_a(void *test)
     apple *t = (apple *)test;
     int sum;
 
+    pthread_mutex_lock(&mutex);
     for (sum = 0; sum < APPLE_MAX_VALUE; sum++)
     {
+        //pthread_mutex_lock(&mutex);
         t->a += sum;
+        //pthread_mutex_unlock(&mutex);
     }
+    pthread_mutex_unlock(&mutex);
 
     printf("apple a thread ends.\n");
 }
@@ -59,11 +64,14 @@ void *compute_apple_b(void *test)
     apple *t = (apple *)test;
     int sum;
 
+    pthread_mutex_lock(&mutex);
     for (sum = 0; sum < APPLE_MAX_VALUE; sum++)
     {
+        //pthread_mutex_lock(&mutex);
         t->b += sum;
+        //pthread_mutex_unlock(&mutex);
     }
-
+    pthread_mutex_unlock(&mutex);
     printf("apple b thread ends.\n");
 }
 
