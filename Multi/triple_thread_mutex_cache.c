@@ -14,7 +14,7 @@
 typedef struct apple
 {
     unsigned long long a;
-    char c[128];
+    char c[512];
     unsigned long long b;
 } apple;
 

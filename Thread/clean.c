@@ -17,6 +17,7 @@ void *t_fun1(void *arg)
     pthread_cleanup_push((void *)clean, "Thread1 1st handler");
     pthread_cleanup_push((void *)clean, "Thread1 2nd handler");
     printf("Thread1 completely pushed.\n");
+    // 异常终止时清理栈中的函数全部执行
     if (arg)
     {
         return ((void *)1);

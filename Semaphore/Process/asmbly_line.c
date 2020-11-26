@@ -70,9 +70,12 @@ int main(int argc, char *argv[])
                 *countEmpty = *countEmpty - 2;
                 *countA = *countA + 2;
                 printf("WorkerA: Station +2A,\t\tStation got %d A(s) now.\n", *countA);
+                if (*countA >= 4 && semctl(semid, 5, GETVAL, NULL) < 1)
+                {
+                    semaphore_v(semid, 5);
+                }
                 semaphore_v(semid, 2);
                 semaphore_v(semid, 0);
-                semaphore_v(semid, 5);
             }
             else
             {
@@ -80,7 +83,7 @@ int main(int argc, char *argv[])
                 semaphore_v(semid, 0);
                 semaphore_p(semid, 3);
             }
-            sleep(5);
+            sleep(1);
         }
         //workerB
     }
@@ -95,9 +98,12 @@ int main(int argc, char *argv[])
                 *countEmpty = *countEmpty - 1;
                 *countB = *countB + 1;
                 printf("WorkerB: Station +1B,\t\tStation got %d B(s) now.\n", *countB);
+                if (*countB >= 3 && semctl(semid, 5, GETVAL, NULL) < 1)
+                {
+                    semaphore_v(semid, 5);
+                }
                 semaphore_v(semid, 2);
                 semaphore_v(semid, 1);
-                semaphore_v(semid, 5);
             }
             else
             {
@@ -105,11 +111,10 @@ int main(int argc, char *argv[])
                 semaphore_v(semid, 1);
                 semaphore_p(semid, 4);
             }
-            sleep(5);
+            sleep(1);
         }
-        //workerC
     }
-    else
+    else //workerC
     {
         while (1)
         {
@@ -134,7 +139,7 @@ int main(int argc, char *argv[])
                 semaphore_v(semid, 0);
                 semaphore_p(semid, 5);
             }
-            sleep(5);
+            //sleep(1);
         }
     }
 }
@@ -148,7 +153,7 @@ void semaphore_p(int sem_id, int semNum)
     sem_b.sem_flg = SEM_UNDO;
     if (semop(sem_id, &sem_b, 1) == -1)
     {
-        fprintf(stderr, "semaphore_p failed\n");
+        fprintf(stderr, "%d semaphore_p failed\n", semNum);
         return;
     }
     return;
@@ -161,9 +166,11 @@ void semaphore_v(int sem_id, int semNum)
     sem_b.sem_num = semNum;
     sem_b.sem_op = 1;
     sem_b.sem_flg = SEM_UNDO;
+    if (semNum == 5)
+        printf("%d\n", semctl(sem_id, semNum, GETVAL, NULL));
     if (semop(sem_id, &sem_b, 1) == -1)
     {
-        fprintf(stderr, "semaphore_v failed\n");
+        fprintf(stderr, "%d,%d,semaphore_v failed\n", semctl(sem_id, semNum, GETVAL, NULL), semNum);
         return;
     }
     return;

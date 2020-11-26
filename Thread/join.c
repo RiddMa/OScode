@@ -12,6 +12,7 @@ void *thread(void *argc)
         //sleep(1);
         printf("I'm a thread: counting %d.\n",i);
     }
+    return NULL;
 }
 
 int main()

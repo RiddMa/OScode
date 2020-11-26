@@ -50,9 +50,7 @@ void *compute_apple_a(void *test)
     pthread_mutex_lock(&mutex);
     for (sum = 0; sum < APPLE_MAX_VALUE; sum++)
     {
-        //pthread_mutex_lock(&mutex);
         t->a += sum;
-        //pthread_mutex_unlock(&mutex);
     }
     pthread_mutex_unlock(&mutex);
 
@@ -67,9 +65,7 @@ void *compute_apple_b(void *test)
     pthread_mutex_lock(&mutex);
     for (sum = 0; sum < APPLE_MAX_VALUE; sum++)
     {
-        //pthread_mutex_lock(&mutex);
         t->b += sum;
-        //pthread_mutex_unlock(&mutex);
     }
     pthread_mutex_unlock(&mutex);
     printf("apple b thread ends.\n");
